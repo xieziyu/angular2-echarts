@@ -1,5 +1,11 @@
-# angular2-echarts
+# angular2-echarts [![npm version](https://badge.fury.io/js/angular2-echarts.svg)](http://badge.fury.io/js/angular2-echarts) [![npm downloads](https://img.shields.io/npm/dm/angular2-echarts.svg)](https://npmjs.org/angular2-echarts)
 angular2 directive for echarts v3
+
+## Table of contents 
+1. [Getting Started](#getting-started)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [API](#api)
 
 # Getting Started
 angular2-echarts is an angular2 structural directive for Baidu's echarts v3.
@@ -27,9 +33,24 @@ npm install angula2-echarts --save
 ```
 
 # Usage
-Please refer to the [demo](http://xieziyu.github.io) page. 
+Please refer to the [demo](http://xieziyu.github.io) page.
 
-IMPORTANT: use `echarts` directive in a div which has **pre-defined height**.
+1. Firstly, import `AngularEcharts` in your app module (or any other proper angular module):
+
+```typescript
+import { AngularEchartsModule } from 'angular2-echarts';
+
+@NgModule({
+  imports: [
+    ...,
+    AngularEchartsModule
+  ],
+  ...
+})
+export class AppModule { }
+```
+
+2. Then: use `echarts` directive in a div which has **pre-defined height**.
 
 + Simple example:
 
@@ -79,7 +100,7 @@ IMPORTANT: use `echarts` directive in a div which has **pre-defined height**.
       {
         type : 'value'
       }
-   ],
+    ],
     series : [
       {
         name:'邮件营销',
@@ -126,7 +147,8 @@ IMPORTANT: use `echarts` directive in a div which has **pre-defined height**.
   }
   ```
 
-# More Properties
+# API
+`echarts` directive support following porperties:
 + `options`: It's the same with the options in official demo site.
 
 + `dataset`: You can ignore the "data" property in "series" of the `options`, and use `dataset` to bind the series data instead.
