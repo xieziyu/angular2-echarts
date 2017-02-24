@@ -1,0 +1,73 @@
+<h1>
+  angular-echarts demo page
+</h1>
+<hr>
+<div class="row">
+  <div class="col-md-3">
+    <div class="well">
+      <ul>
+        <li>
+          <a href="#demo1">Demo 1: Line Chart</a>
+        </li>
+        <li>
+          <a href="#demo2">Demo 2: Bar Chart</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <div id="demo1" class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demo 1: Line chart with standard options</h3>
+      </div>
+      <div class="panel-body">
+        <div echarts [options]="chartOption1" class="demo-chart"></div>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html" theme="okaidia">
+              &lt;div echarts [options]="chartOption1" class="demo-chart">&lt;/div>
+            </codeblock>
+          </tab>
+          <tab heading='chartOption1'>
+            <codeblock language="javascript" theme="okaidia">
+              chartOption1 = {{chartOption1 | json}};
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <div id="demo2" class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demo 2: Bar chart with separate dataset</h3>
+      </div>
+      <div class="panel-body">
+        <div echarts [options]="chartOption2" [dataset]="dataset2" class="demo-chart"></div>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html" theme="okaidia">
+              &lt;div echarts [options]="chartOption2" [dataset]="dataset2" class="demo-chart">&lt;/div>
+            </codeblock>
+          </tab>
+          <tab heading='chartOption2'>
+            <codeblock language="javascript" theme="okaidia">
+              chartOption2 = {{chartOption2 | json}};
+            </codeblock>
+          </tab>
+          <tab heading='dataset2'>
+            <codeblock language="javascript" theme="okaidia">
+              dataset2 = {{dataset2 | json}};
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
