@@ -38,3 +38,7 @@ export const BarChartOptions1 = {
 export const BarChartDataset1 = [
   [10, 52, 200, 334, 390, 330, 220]
 ];
+
+export const BarChartDataset2 = [
+  [200, 32, 444, 666, 88, 352, 380]
+];

@@ -1,23 +1,26 @@
 <h1>
-  angular-echarts demo page
+  angular2-echarts
 </h1>
 <hr>
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-6">
     <div class="well">
       <ul>
         <li>
-          <a href="#demo1">Demo 1: Line Chart</a>
+          <a href="#demo1">Demo 1: Standard "options"</a>
         </li>
         <li>
-          <a href="#demo2">Demo 2: Bar Chart</a>
+          <a href="#demo2">Demo 2: Use "dataset" to update chart easily</a>
+        </li>
+        <li>
+          <a href="#demo3">Demo 3: Use "loading"</a>
         </li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-6">
     <div id="demo1" class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Demo 1: Line chart with standard options</h3>
@@ -40,30 +43,98 @@
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-9">
+
+  <div class="col-md-6">
     <div id="demo2" class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Demo 2: Bar chart with separate dataset</h3>
       </div>
       <div class="panel-body">
-        <div echarts [options]="chartOption2" [dataset]="dataset2" class="demo-chart"></div>
+        <button class="btn btn-primary" (click)="chageDataset()">Change dateset</button>
+        <hr>
+        <div echarts [options]="chartOption2" [dataset]="dataset" class="demo-chart"></div>
         <hr>
         <tabset>
           <tab heading='html'>
             <codeblock language="html" theme="okaidia">
-              &lt;div echarts [options]="chartOption2" [dataset]="dataset2" class="demo-chart">&lt;/div>
+              &lt;div echarts [options]="chartOption2" [dataset]="dataset" class="demo-chart">&lt;/div>
+            </codeblock>
+          </tab>
+          <tab heading='dataset'>
+            <codeblock language="javascript" theme="okaidia">
+              dataset = {{dataset | json}};
             </codeblock>
           </tab>
           <tab heading='chartOption2'>
             <codeblock language="javascript" theme="okaidia">
-              chartOption2 = {{chartOption2 | json}};
+              chartOption2 = {{"{"}}
+                "color": ["#3398DB"],
+                "tooltip": {{"{"}}
+                  "trigger": "axis",
+                  "axisPointer": {{"{"}}            // 坐标轴指示器，坐标轴触发有效
+                    "type": "shadow"          // 默认为直线，可选为："line" | "shadow"
+                  }
+                },
+                "grid": {{"{"}}
+                  "left": "3%",
+                  "right": "4%",
+                  "bottom": "3%",
+                  "containLabel": true
+                },
+                "xAxis": [
+                  {{"{"}}
+                    "type": "category",
+                    "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                    "axisTick": {{"{"}}
+                      "alignWithLabel": true
+                    }
+                  }
+                ],
+                "yAxis": [
+                  {{"{"}}
+                    "type": "value"
+                  }
+                ],
+                "series": [
+                  {{"{"}}
+                    "name": "直接访问",
+                    "type": "bar",
+                    "barWidth": "60%"
+                  }
+                ]
+              }
             </codeblock>
           </tab>
-          <tab heading='dataset2'>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div id="demo3" class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demo 3: Use "loading"</h3>
+      </div>
+      <div class="panel-body">
+        <button class="btn btn-primary" (click)="toggleLoading()">Toggle Loading</button>
+        <hr>
+        <div echarts [options]="chartOption3" [loading]="chartLoading" class="demo-chart"></div>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html" theme="okaidia">
+              &lt;div echarts [options]="chartOption3" [loading]="chartLoading" class="demo-chart">&lt;/div>
+            </codeblock>
+          </tab>
+          <tab heading='chart3Loading'>
             <codeblock language="javascript" theme="okaidia">
-              dataset2 = {{dataset2 | json}};
+              chartLoading = {{chartLoading | json}};
+            </codeblock>
+          </tab>
+          <tab heading='chartOption3'>
+            <codeblock language="javascript" theme="okaidia">
+              chartOption3 = {{chartOption3 | json}};
             </codeblock>
           </tab>
         </tabset>

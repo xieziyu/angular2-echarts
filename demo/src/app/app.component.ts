@@ -13,6 +13,18 @@ export class AppComponent {
   chartOption1 = demo.LineChartOptions1;
 
   // demo2:
-  chartOption2 = demo.BarChartOptions1;
-  dataset2 = demo.BarChartDataset1;
+  chartOption2= demo.BarChartOptions1;
+  dataset = demo.BarChartDataset1;
+
+  // demo3:
+  chartOption3 = demo.PieChartOptions1;
+  chartLoading = false;
+
+  chageDataset() {
+    this.dataset = (this.dataset == demo.BarChartDataset2) ? demo.BarChartDataset1 :  demo.BarChartDataset2;
+  }
+
+  toggleLoading() {
+    this.chartLoading = !this.chartLoading;
+  }
 }
