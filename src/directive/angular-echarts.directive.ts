@@ -12,7 +12,7 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
   @Input() loading: boolean;
 
   private myChart: any = null;
-  private currentWindowWidth = null;
+  private currentWindowWidth: any = null;
   private checked = 0;
 
   constructor(private el: ElementRef, private renderer: Renderer) {
@@ -29,7 +29,7 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
     this.myChart.resize();
   }
 
-  @HostListener('window:resize', ['$event']) onWindowResize(event) {
+  @HostListener('window:resize', ['$event']) onWindowResize(event: any) {
     if (event.target.innerWidth !== this.currentWindowWidth) {
       this.currentWindowWidth = event.target.innerWidth;
       if (this.myChart) {
