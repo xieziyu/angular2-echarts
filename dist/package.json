@@ -1,6 +1,6 @@
 {
   "name": "angular2-echarts",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "license": "MIT",
   "scripts": {
     "build": "ngc -p src"
