@@ -20,11 +20,22 @@ export class AppComponent {
   chartOption3 = demo.PieChartOptions1;
   chartLoading = false;
 
+  // demo4:
+  chartOption4 = demo.BarChartOptions2;
+
   chageDataset() {
     this.dataset = (this.dataset == demo.BarChartDataset2) ? demo.BarChartDataset1 :  demo.BarChartDataset2;
   }
 
   toggleLoading() {
     this.chartLoading = !this.chartLoading;
+  }
+
+  onChartClick(params) {
+    console.log('click event: ', params);
+  }
+
+  onChartDblClick(params) {
+    console.log('dblclick event: ', params);
   }
 }

@@ -1,4 +1,4 @@
-import { ElementRef, Renderer, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
+import { ElementRef, Renderer, OnChanges, OnDestroy, SimpleChange, EventEmitter } from '@angular/core';
 export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
     private el;
     private renderer;
@@ -6,6 +6,13 @@ export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
     dataset: Array<any>;
     theme: string;
     loading: boolean;
+    chartClick: EventEmitter<any>;
+    chartDblClick: EventEmitter<any>;
+    chartMouseDown: EventEmitter<any>;
+    chartMouseUp: EventEmitter<any>;
+    chartMouseOver: EventEmitter<any>;
+    chartMouseOut: EventEmitter<any>;
+    chartGlobalOut: EventEmitter<any>;
     private myChart;
     private currentWindowWidth;
     private checked;
@@ -21,4 +28,5 @@ export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
     onDatasetChange(dataset: Array<any>): void;
     onLoadingChange(loading: boolean): void;
     hasData(): boolean;
+    private registerEvents(myChart);
 }

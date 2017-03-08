@@ -1,8 +1,15 @@
-import { Directive, ElementRef, Renderer, Input, HostListener } from '@angular/core';
+import { Directive, ElementRef, Renderer, Input, Output, HostListener, EventEmitter } from '@angular/core';
 export var AngularEchartsDirective = (function () {
     function AngularEchartsDirective(el, renderer) {
         this.el = el;
         this.renderer = renderer;
+        this.chartClick = new EventEmitter();
+        this.chartDblClick = new EventEmitter();
+        this.chartMouseDown = new EventEmitter();
+        this.chartMouseUp = new EventEmitter();
+        this.chartMouseOver = new EventEmitter();
+        this.chartMouseOut = new EventEmitter();
+        this.chartGlobalOut = new EventEmitter();
         this.myChart = null;
         this.currentWindowWidth = null;
         this.checked = 0;
@@ -45,6 +52,7 @@ export var AngularEchartsDirective = (function () {
         if (opt) {
             if (!this.myChart) {
                 this.myChart = this.createChart();
+                this.registerEvents(this.myChart);
             }
             if (this.hasData()) {
                 this.updateChart();
@@ -89,6 +97,18 @@ export var AngularEchartsDirective = (function () {
         }
         return false;
     };
+    AngularEchartsDirective.prototype.registerEvents = function (myChart) {
+        var _this = this;
+        if (myChart) {
+            myChart.on('click', function (e) { _this.chartClick.emit(e); });
+            myChart.on('dblClick', function (e) { _this.chartDblClick.emit(e); });
+            myChart.on('mousedown', function (e) { _this.chartMouseDown.emit(e); });
+            myChart.on('mouseup', function (e) { _this.chartMouseUp.emit(e); });
+            myChart.on('mouseover', function (e) { _this.chartMouseOver.emit(e); });
+            myChart.on('mouseout', function (e) { _this.chartMouseOut.emit(e); });
+            myChart.on('globalout', function (e) { _this.chartGlobalOut.emit(e); });
+        }
+    };
     AngularEchartsDirective.decorators = [
         { type: Directive, args: [{
                     selector: '[echarts]'
@@ -103,6 +123,13 @@ export var AngularEchartsDirective = (function () {
         'dataset': [{ type: Input },],
         'theme': [{ type: Input },],
         'loading': [{ type: Input },],
+        'chartClick': [{ type: Output },],
+        'chartDblClick': [{ type: Output },],
+        'chartMouseDown': [{ type: Output },],
+        'chartMouseUp': [{ type: Output },],
+        'chartMouseOver': [{ type: Output },],
+        'chartMouseOut': [{ type: Output },],
+        'chartGlobalOut': [{ type: Output },],
         'onWindowResize': [{ type: HostListener, args: ['window:resize', ['$event'],] },],
     };
     return AngularEchartsDirective;

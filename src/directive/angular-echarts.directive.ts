@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer, Input, HostListener, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
+import { Directive, ElementRef, Renderer, Input, Output, HostListener, OnChanges, OnDestroy, SimpleChange, EventEmitter } from '@angular/core';
 
 declare var echarts: any;
 
@@ -10,6 +10,16 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
   @Input() dataset: Array<any>;
   @Input() theme: string;
   @Input() loading: boolean;
+
+  // chart events:
+  @Output() chartClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() chartDblClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() chartMouseDown: EventEmitter<any> = new EventEmitter<any>();
+  @Output() chartMouseUp: EventEmitter<any> = new EventEmitter<any>();
+  @Output() chartMouseOver: EventEmitter<any> = new EventEmitter<any>();
+  @Output() chartMouseOut: EventEmitter<any> = new EventEmitter<any>();
+  @Output() chartGlobalOut: EventEmitter<any> = new EventEmitter<any>();
+
 
   private myChart: any = null;
   private currentWindowWidth: any = null;
@@ -63,6 +73,9 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
     if (opt) {
       if (!this.myChart) {
         this.myChart = this.createChart();
+
+        // register events:
+        this.registerEvents(this.myChart);
       }
 
       if (this.hasData()) {
@@ -115,5 +128,18 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
     }
 
     return false;
+  }
+
+  private registerEvents(myChart: any) {
+    if (myChart) {
+      // register mouse events:
+      myChart.on('click', (e: any) => { this.chartClick.emit(e); });
+      myChart.on('dblClick', (e: any) => { this.chartDblClick.emit(e); });
+      myChart.on('mousedown', (e: any) => { this.chartMouseDown.emit(e); });
+      myChart.on('mouseup', (e: any) => { this.chartMouseUp.emit(e); });
+      myChart.on('mouseover', (e: any) => { this.chartMouseOver.emit(e); });
+      myChart.on('mouseout', (e: any) => { this.chartMouseOut.emit(e); });
+      myChart.on('globalout', (e: any) => { this.chartGlobalOut.emit(e); });
+    }
   }
 }

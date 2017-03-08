@@ -15,6 +15,9 @@
         <li>
           <a href="#demo3">Demo 3: Use "loading"</a>
         </li>
+        <li>
+          <a href="#demo4">Demo 4: Binding to mouse events</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -135,6 +138,39 @@
           <tab heading='chartOption3'>
             <codeblock language="javascript" theme="okaidia">
               chartOption3 = {{chartOption3 | json}};
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="demo4" class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demo 4: Binding to mouse events</h3>
+      </div>
+      <div class="panel-body">
+        <h4>You can click the chart and check the console output.</h4>
+        <hr>
+        <div echarts class="demo-chart"
+          [options]="chartOption4"
+          (chartClick)="onChartClick($event)"
+          (chartDblClick)="onChartDblClick($event)">
+        </div>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html" theme="okaidia">
+              &lt;div echarts class="demo-chart"
+                [options]="chartOption4"
+                (chartClick)="onChartClick($event)"
+                (chartDblClick)="onChartDblClick($event)">
+              &lt;/div>
+            </codeblock>
+          </tab>
+          <tab heading='chartOption4'>
+            <codeblock language="javascript" theme="okaidia">
+              chartOption4 = {{chartOption4 | json}};
             </codeblock>
           </tab>
         </tabset>

@@ -6,7 +6,8 @@ angular2 directive for echarts v3. Please refer to the [demo](http://xieziyu.git
 2. [Installation](#installation)
 3. [Usage](#usage)
 4. [API](#api)
-5. [Demo](#demo)
+5. [Events](#events)
+6. [Demo](#demo)
 
 # Getting Started
 angular2-echarts is an angular2 structural directive for Baidu's echarts v3.
@@ -149,12 +150,33 @@ Please refer to the [demo](http://xieziyu.github.io) page.
       ```
 
 # API
-`echarts` directive support following porperties:
+`echarts` directive support following input porperties:
 + `options`: It's the same with the options in official demo site.
 
 + `dataset`: You can ignore the "data" property in "series" of the `options`, and use `dataset` to bind the series data instead.
 
 + `loading`: boolean property. Use it to toggle the echarts loading animation when your data is not ready.
+
+# Events
+As echarts support the `'click'`, `'dblclick'`, `'mousedown'`, `'mouseup'`, `'mouseover'`, `'mouseout'`, `'globalout'` mouse events, our `angular2-echarts` directive also support the same mouse events but with additional `chart` prefix.
+  + example:
+  ```html
+  <div echarts class="demo-chart"
+    [options]="chartOptions"
+    (chartClick)="onChartClick($event)">
+  </div>
+  <!-- The '$event' is same with the 'params' that Echarts dispatches -->
+  ```
+It supports following event outputs:
++ `chartClick`: It emits the same `params` of `'click'` event
++ `chartDblClick`: It emits the same `params` of `'dblclick'` event
++ `chartMouseDown`: It emits the same `params` of `'mousedown'` event
++ `chartMouseUp`: It emits the same `params` of `'mouseup'` event
++ `chartMouseOver`: It emits the same `params` of `'mouseover'` event
++ `chartMouseOut`: It emits the same `params` of `'mouseout'` event
++ `chartGlobalOut`: It emits the same `params` of `'globalout'` event
+
+You can refer to the echarts tutorial: [Events and Actions in ECharts](https://ecomfe.github.io/echarts-doc/public/en/tutorial.html#Events%20and%20Actions%20in%20ECharts) for more details of the event params. You can also refer to the [demo](http://xieziyu.github.io) page for the detailed example.
 
 # Demo
 You can clone this repo to your working copy and then launch the demo page in your local machine:
