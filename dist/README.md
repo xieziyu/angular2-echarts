@@ -16,7 +16,7 @@ angular2-echarts is an angular2 structural directive for Baidu's echarts v3.
 ```
 npm install echarts --save
 
-npm install angula2-echarts --save
+npm install angular2-echarts --save
 ```
 
 ## How to use it with:
