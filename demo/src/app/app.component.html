@@ -18,6 +18,9 @@
         <li>
           <a href="#demo4">Demo 4: Binding to mouse events</a>
         </li>
+        <li>
+          <a href="#demo5">Demo 5: How to update the "options"</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -26,7 +29,7 @@
   <div class="col-md-6">
     <div id="demo1" class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">Demo 1: Line chart with standard options</h3>
+        <h3 class="panel-title">Demo 1: Standard "options"</h3>
       </div>
       <div class="panel-body">
         <div echarts [options]="chartOption1" class="demo-chart"></div>
@@ -50,7 +53,7 @@
   <div class="col-md-6">
     <div id="demo2" class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">Demo 2: Bar chart with separate dataset</h3>
+        <h3 class="panel-title">Demo 2: Use "dataset" to update chart easily</h3>
       </div>
       <div class="panel-body">
         <button class="btn btn-primary" (click)="chageDataset()">Change dateset</button>
@@ -171,6 +174,53 @@
           <tab heading='chartOption4'>
             <codeblock language="javascript" theme="okaidia">
               chartOption4 = {{chartOption4 | json}};
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div id="demo5" class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demo 5: How to update the "options"</h3>
+      </div>
+      <div class="panel-body">
+        <button class="btn btn-primary" (click)="changeOptions()" [disabled]="revert">Change Options</button>
+        <button class="btn btn-primary" (click)="revertOptions()" [disabled]="!revert">Revert Options</button>
+        <hr>
+        <div echarts [options]="chartOption5" [dataset]="dataset" class="demo-chart"></div>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html" theme="okaidia">
+              &lt;div echarts [options]="chartOption5" [dataset]="dataset" class="demo-chart">&lt;/div>
+            </codeblock>
+          </tab>
+          <tab heading='changeOptions'>
+            <codeblock language="javascript" theme="okaidia">
+              this.chartOption5 = Object.assign({{ '{' }}}, this.chartOption5);
+              this.chartOption5.legend = {{ '{' }} show: true };
+              this.chartOption5.legend.data = [{{ '{' }} name: '直接访问', icon: 'circle' }];
+              this.chartOption5.series = [];
+              this.chartOption5.series[0] = {{ '{' }}
+                name: '直接访问',
+                type: 'line',
+                markPoint: {{ '{' }}
+                  data: [
+                    {{ '{' }} type: 'min', name: '最小值' },
+                    {{ '{' }} type: 'max', name: '最大值' },
+                  ]
+                }
+              };
+            </codeblock>
+          </tab>
+          <tab heading='chartOption5'>
+            <codeblock language="javascript" theme="okaidia">
+              chartOption5 = {{chartOption5 | json}};
             </codeblock>
           </tab>
         </tabset>

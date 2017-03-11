@@ -12,7 +12,7 @@ export var AngularEchartsDirective = (function () {
         this.chartGlobalOut = new EventEmitter();
         this.myChart = null;
         this.currentWindowWidth = null;
-        this.checked = 0;
+        this.skipDataChange = false;
     }
     AngularEchartsDirective.prototype.createChart = function () {
         this.theme = this.theme || 'default';
@@ -56,22 +56,25 @@ export var AngularEchartsDirective = (function () {
             }
             if (this.hasData()) {
                 this.updateChart();
+                this.skipDataChange = true;
+            }
+            else if (this.dataset && this.dataset.length) {
+                this.mergeDataset(this.dataset);
+                this.updateChart();
+                this.skipDataChange = true;
             }
         }
     };
     AngularEchartsDirective.prototype.onDatasetChange = function (dataset) {
+        if (this.skipDataChange) {
+            this.skipDataChange = false;
+            return;
+        }
         if (this.myChart && this.options) {
             if (!this.options.series) {
                 this.options.series = [];
             }
-            for (var i = 0, len = dataset.length; i < len; i++) {
-                if (!this.options.series[i]) {
-                    this.options.series[i] = { data: dataset[i] };
-                }
-                else {
-                    this.options.series[i].data = dataset[i];
-                }
-            }
+            this.mergeDataset(dataset);
             this.updateChart();
         }
     };
@@ -82,6 +85,16 @@ export var AngularEchartsDirective = (function () {
             }
             else {
                 this.myChart.hideLoading();
+            }
+        }
+    };
+    AngularEchartsDirective.prototype.mergeDataset = function (dataset) {
+        for (var i = 0, len = dataset.length; i < len; i++) {
+            if (!this.options.series[i]) {
+                this.options.series[i] = { data: dataset[i] };
+            }
+            else {
+                this.options.series[i].data = dataset[i];
             }
         }
     };

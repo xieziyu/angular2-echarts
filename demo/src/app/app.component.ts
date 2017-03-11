@@ -13,7 +13,7 @@ export class AppComponent {
   chartOption1 = demo.LineChartOptions1;
 
   // demo2:
-  chartOption2= demo.BarChartOptions1;
+  chartOption2 = demo.BarChartOptions1();
   dataset = demo.BarChartDataset1;
 
   // demo3:
@@ -22,6 +22,10 @@ export class AppComponent {
 
   // demo4:
   chartOption4 = demo.BarChartOptions2;
+
+  // demo5:
+  chartOption5: any = demo.BarChartOptions1();
+  revert: boolean = false;
 
   chageDataset() {
     this.dataset = (this.dataset == demo.BarChartDataset2) ? demo.BarChartDataset1 :  demo.BarChartDataset2;
@@ -37,5 +41,28 @@ export class AppComponent {
 
   onChartDblClick(params) {
     console.log('dblclick event: ', params);
+  }
+
+  changeOptions() {
+    this.chartOption5 = Object.assign({}, this.chartOption5);
+    this.chartOption5.legend = { show: true };
+    this.chartOption5.legend.data = [{ name: '直接访问', icon: 'circle' }];
+    this.chartOption5.series = [];
+    this.chartOption5.series[0] = {
+      name: '直接访问',
+      type: 'line',
+      markPoint: {
+        data: [
+          { type: 'min', name: '最小值' },
+          { type: 'max', name: '最大值' },
+        ]
+      }
+    };
+    this.revert = true;
+  }
+
+  revertOptions() {
+    this.chartOption5 = demo.BarChartOptions1();
+    this.revert = false;
   }
 }

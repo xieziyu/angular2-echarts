@@ -7,7 +7,7 @@ declare var echarts: any;
 })
 export class AngularEchartsDirective implements OnChanges, OnDestroy {
   @Input() options: any;
-  @Input() dataset: Array<any>;
+  @Input() dataset: any[];
   @Input() theme: string;
   @Input() loading: boolean;
 
@@ -23,7 +23,7 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
 
   private myChart: any = null;
   private currentWindowWidth: any = null;
-  private checked = 0;
+  private skipDataChange: boolean = false;
 
   constructor(private el: ElementRef, private renderer: Renderer) {
   }
@@ -69,7 +69,7 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
     }
   }
 
-  onOptionsChange(opt: any) {
+  private onOptionsChange(opt: any) {
     if (opt) {
       if (!this.myChart) {
         this.myChart = this.createChart();
@@ -80,30 +80,34 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
 
       if (this.hasData()) {
         this.updateChart();
+        // skip dataset change detection.
+        this.skipDataChange = true;
+      } else if (this.dataset && this.dataset.length) {
+        this.mergeDataset(this.dataset);
+        this.updateChart();
+        // skip dataset change detection.
+        this.skipDataChange = true;
       }
     }
   }
 
-  onDatasetChange(dataset: Array<any>) {
+  private onDatasetChange(dataset: any[]) {
+    if (this.skipDataChange) {
+      this.skipDataChange = false;
+      return;
+    }
+
     if (this.myChart && this.options) {
       if (!this.options.series) {
         this.options.series = [];
       }
       
-      for (let i = 0, len = dataset.length; i < len; i++) {
-        if (!this.options.series[i]) {
-          this.options.series[i] = { data: dataset[i] };
-        } else {
-          this.options.series[i].data = dataset[i];
-        }
-        
-      }
-
+      this.mergeDataset(dataset);
       this.updateChart();
     }
   }
 
-  onLoadingChange(loading: boolean) {
+  private onLoadingChange(loading: boolean) {
     if (this.myChart) {
       if (loading) {
         this.myChart.showLoading();
@@ -113,10 +117,20 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
     }
   }
 
+  private mergeDataset(dataset: any[]) {
+    for (let i = 0, len = dataset.length; i < len; i++) {
+      if (!this.options.series[i]) {
+        this.options.series[i] = { data: dataset[i] };
+      } else {
+        this.options.series[i].data = dataset[i];
+      }
+    }
+  }
+
   /**
    * method to check if the option has dataset.
    */
-  hasData(): boolean {
+  private hasData(): boolean {
     if (!this.options.series || !this.options.series.length) {
       return false;
     }

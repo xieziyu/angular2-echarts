@@ -162,12 +162,9 @@ As echarts support the `'click'`, `'dblclick'`, `'mousedown'`, `'mouseup'`, `'mo
 
   + example:
   ```html
-  <div echarts class="demo-chart"
-    [options]="chartOptions"
-    (chartClick)="onChartClick($event)">
-  </div>
-  <!-- The '$event' is same with the 'params' that Echarts dispatches -->
+  <div echarts class="demo-chart" [options]="chartOptions" (chartClick)="onChartClick($event)"></div>
   ```
+  + The '$event' is same with the 'params' that Echarts dispatches
 
 It supports following event outputs:
 + `chartClick`: It emits the same `params` of `'click'` event

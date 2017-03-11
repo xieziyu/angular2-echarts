@@ -1,4 +1,4 @@
-export const BarChartOptions1 = {
+export const BarChartOptions1 = () => ({
   color: ['#3398DB'],
   tooltip: {
     trigger: 'axis',
@@ -33,7 +33,7 @@ export const BarChartOptions1 = {
       barWidth: '60%'
     }
   ]
-};
+});
 
 export const BarChartDataset1 = [
   [10, 52, 200, 334, 390, 330, 220]

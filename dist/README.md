@@ -159,14 +159,13 @@ Please refer to the [demo](http://xieziyu.github.io) page.
 
 # Events
 As echarts support the `'click'`, `'dblclick'`, `'mousedown'`, `'mouseup'`, `'mouseover'`, `'mouseout'`, `'globalout'` mouse events, our `angular2-echarts` directive also support the same mouse events but with additional `chart` prefix.
+
   + example:
   ```html
-  <div echarts class="demo-chart"
-    [options]="chartOptions"
-    (chartClick)="onChartClick($event)">
-  </div>
-  <!-- The '$event' is same with the 'params' that Echarts dispatches -->
+  <div echarts class="demo-chart" [options]="chartOptions" (chartClick)="onChartClick($event)"></div>
   ```
+  + The '$event' is same with the 'params' that Echarts dispatches
+
 It supports following event outputs:
 + `chartClick`: It emits the same `params` of `'click'` event
 + `chartDblClick`: It emits the same `params` of `'dblclick'` event

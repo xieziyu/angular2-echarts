@@ -3,7 +3,7 @@ export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
     private el;
     private renderer;
     options: any;
-    dataset: Array<any>;
+    dataset: any[];
     theme: string;
     loading: boolean;
     chartClick: EventEmitter<any>;
@@ -15,7 +15,7 @@ export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
     chartGlobalOut: EventEmitter<any>;
     private myChart;
     private currentWindowWidth;
-    private checked;
+    private skipDataChange;
     constructor(el: ElementRef, renderer: Renderer);
     private createChart();
     private updateChart();
@@ -24,9 +24,10 @@ export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
         [propertyName: string]: SimpleChange;
     }): void;
     ngOnDestroy(): void;
-    onOptionsChange(opt: any): void;
-    onDatasetChange(dataset: Array<any>): void;
-    onLoadingChange(loading: boolean): void;
-    hasData(): boolean;
+    private onOptionsChange(opt);
+    private onDatasetChange(dataset);
+    private onLoadingChange(loading);
+    private mergeDataset(dataset);
+    private hasData();
     private registerEvents(myChart);
 }
