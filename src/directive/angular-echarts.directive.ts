@@ -60,6 +60,11 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
     if (changes['loading']) {
       this.onLoadingChange(this.loading);
     }
+
+    if (this.skipDataChange) {
+      // skip data change only once in the same cycle.
+      this.skipDataChange = false;
+    }
   }
 
   ngOnDestroy() {
@@ -92,10 +97,7 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
   }
 
   private onDatasetChange(dataset: any[]) {
-    if (this.skipDataChange) {
-      this.skipDataChange = false;
-      return;
-    }
+    if (this.skipDataChange) return;
 
     if (this.myChart && this.options) {
       if (!this.options.series) {

@@ -41,6 +41,9 @@ export var AngularEchartsDirective = (function () {
         if (changes['loading']) {
             this.onLoadingChange(this.loading);
         }
+        if (this.skipDataChange) {
+            this.skipDataChange = false;
+        }
     };
     AngularEchartsDirective.prototype.ngOnDestroy = function () {
         if (this.myChart) {
@@ -66,10 +69,8 @@ export var AngularEchartsDirective = (function () {
         }
     };
     AngularEchartsDirective.prototype.onDatasetChange = function (dataset) {
-        if (this.skipDataChange) {
-            this.skipDataChange = false;
+        if (this.skipDataChange)
             return;
-        }
         if (this.myChart && this.options) {
             if (!this.options.series) {
                 this.options.series = [];
