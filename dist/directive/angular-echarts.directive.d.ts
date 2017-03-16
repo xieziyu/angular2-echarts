@@ -15,7 +15,6 @@ export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
     chartGlobalOut: EventEmitter<any>;
     private myChart;
     private currentWindowWidth;
-    private skipDataChange;
     constructor(el: ElementRef, renderer: Renderer);
     private createChart();
     private updateChart();

@@ -20,10 +20,8 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
   @Output() chartMouseOut: EventEmitter<any> = new EventEmitter<any>();
   @Output() chartGlobalOut: EventEmitter<any> = new EventEmitter<any>();
 
-
   private myChart: any = null;
   private currentWindowWidth: any = null;
-  private skipDataChange: boolean = false;
 
   constructor(private el: ElementRef, private renderer: Renderer) {
   }
@@ -49,21 +47,16 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+    if (changes['dataset']) {
+      this.onDatasetChange(this.dataset);
+    }
+    
     if (changes['options']) {
       this.onOptionsChange(this.options);
     }
 
-    if (changes['dataset']) {
-      this.onDatasetChange(this.dataset);
-    }
-
     if (changes['loading']) {
       this.onLoadingChange(this.loading);
-    }
-
-    if (this.skipDataChange) {
-      // skip data change only once in the same cycle.
-      this.skipDataChange = false;
     }
   }
 
@@ -85,20 +78,14 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
 
       if (this.hasData()) {
         this.updateChart();
-        // skip dataset change detection.
-        this.skipDataChange = true;
       } else if (this.dataset && this.dataset.length) {
         this.mergeDataset(this.dataset);
         this.updateChart();
-        // skip dataset change detection.
-        this.skipDataChange = true;
       }
     }
   }
 
   private onDatasetChange(dataset: any[]) {
-    if (this.skipDataChange) return;
-
     if (this.myChart && this.options) {
       if (!this.options.series) {
         this.options.series = [];

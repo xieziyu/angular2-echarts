@@ -1,4 +1,10 @@
-<a name="1.1.1"></a>
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/xieziyu/angular2-echarts/compare/v1.1.2...v1.1.3) (2017-03-16)
+
+### Bugfix
++ Fix a bug causing the `dataset` change detection was unexpectedly skipped when `options` was changed in the same cycle.
+
+<a name="1.1.2"></a>
 ## [1.1.2](https://github.com/xieziyu/angular2-echarts/compare/v1.1.1...v1.1.2) (2017-03-11)
 
 ### Bugfix

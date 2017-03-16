@@ -12,7 +12,6 @@ export var AngularEchartsDirective = (function () {
         this.chartGlobalOut = new EventEmitter();
         this.myChart = null;
         this.currentWindowWidth = null;
-        this.skipDataChange = false;
     }
     AngularEchartsDirective.prototype.createChart = function () {
         this.theme = this.theme || 'default';
@@ -32,17 +31,14 @@ export var AngularEchartsDirective = (function () {
         }
     };
     AngularEchartsDirective.prototype.ngOnChanges = function (changes) {
-        if (changes['options']) {
-            this.onOptionsChange(this.options);
-        }
         if (changes['dataset']) {
             this.onDatasetChange(this.dataset);
         }
+        if (changes['options']) {
+            this.onOptionsChange(this.options);
+        }
         if (changes['loading']) {
             this.onLoadingChange(this.loading);
-        }
-        if (this.skipDataChange) {
-            this.skipDataChange = false;
         }
     };
     AngularEchartsDirective.prototype.ngOnDestroy = function () {
@@ -59,18 +55,14 @@ export var AngularEchartsDirective = (function () {
             }
             if (this.hasData()) {
                 this.updateChart();
-                this.skipDataChange = true;
             }
             else if (this.dataset && this.dataset.length) {
                 this.mergeDataset(this.dataset);
                 this.updateChart();
-                this.skipDataChange = true;
             }
         }
     };
     AngularEchartsDirective.prototype.onDatasetChange = function (dataset) {
-        if (this.skipDataChange)
-            return;
         if (this.myChart && this.options) {
             if (!this.options.series) {
                 this.options.series = [];
