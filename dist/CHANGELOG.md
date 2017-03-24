@@ -1,3 +1,9 @@
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/xieziyu/angular2-echarts/compare/v1.1.3...v1.1.4) (2017-03-24)
+
+### Changes
++ Support angular-4.0.0
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/xieziyu/angular2-echarts/compare/v1.1.2...v1.1.3) (2017-03-16)
 
