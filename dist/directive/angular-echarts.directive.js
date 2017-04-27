@@ -10,6 +10,7 @@ export var AngularEchartsDirective = (function () {
         this.chartMouseOver = new EventEmitter();
         this.chartMouseOut = new EventEmitter();
         this.chartGlobalOut = new EventEmitter();
+        this.chartDataZoom = new EventEmitter();
         this.myChart = null;
         this.currentWindowWidth = null;
     }
@@ -113,6 +114,7 @@ export var AngularEchartsDirective = (function () {
             myChart.on('mouseover', function (e) { _this.chartMouseOver.emit(e); });
             myChart.on('mouseout', function (e) { _this.chartMouseOut.emit(e); });
             myChart.on('globalout', function (e) { _this.chartGlobalOut.emit(e); });
+            myChart.on('dataZoom', function (e) { _this.chartDataZoom.emit(e); });
         }
     };
     AngularEchartsDirective.decorators = [
@@ -136,6 +138,7 @@ export var AngularEchartsDirective = (function () {
         'chartMouseOver': [{ type: Output },],
         'chartMouseOut': [{ type: Output },],
         'chartGlobalOut': [{ type: Output },],
+        'chartDataZoom': [{ type: Output },],
         'onWindowResize': [{ type: HostListener, args: ['window:resize', ['$event'],] },],
     };
     return AngularEchartsDirective;
