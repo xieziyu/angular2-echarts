@@ -13,6 +13,7 @@ export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
     chartMouseOver: EventEmitter<any>;
     chartMouseOut: EventEmitter<any>;
     chartGlobalOut: EventEmitter<any>;
+    chartDataZoom: EventEmitter<any>;
     private myChart;
     private currentWindowWidth;
     constructor(el: ElementRef, renderer: Renderer);
