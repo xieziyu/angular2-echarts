@@ -1,3 +1,9 @@
+<a name="1.1.5"></a>
+## [1.1.5](https://github.com/xieziyu/angular2-echarts/compare/v1.1.4...v1.1.5) (2017-05-01)
+
+### Changes
++ Support `chartDataZoom` event. (Thanks to averhaegen)
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://github.com/xieziyu/angular2-echarts/compare/v1.1.3...v1.1.4) (2017-03-24)
 

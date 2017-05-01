@@ -176,6 +176,7 @@ It supports following event outputs:
 + `chartMouseOver`: It emits the same `params` of `'mouseover'` event
 + `chartMouseOut`: It emits the same `params` of `'mouseout'` event
 + `chartGlobalOut`: It emits the same `params` of `'globalout'` event
++ `chartDataZoom`: It emits the same `params` of `'dataZoom'` event (thanks to averhaegen)
 
 You can refer to the echarts tutorial: [Events and Actions in ECharts](https://ecomfe.github.io/echarts-doc/public/en/tutorial.html#Events%20and%20Actions%20in%20ECharts) for more details of the event params. You can also refer to the [demo](http://xieziyu.github.io) page for the detailed example.
 
