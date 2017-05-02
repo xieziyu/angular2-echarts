@@ -1,3 +1,9 @@
+<a name="1.1.6"></a>
+## [1.1.6](https://github.com/xieziyu/angular2-echarts/compare/v1.1.5...v1.1.6) (2017-05-02)
+
+### Changes
++ Expose `echartsInstance` in `chartInit` event. Refer to: [http://echarts.baidu.com/api.html#echartsInstance](http://echarts.baidu.com/api.html#echartsInstance)
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/xieziyu/angular2-echarts/compare/v1.1.4...v1.1.5) (2017-05-01)
 

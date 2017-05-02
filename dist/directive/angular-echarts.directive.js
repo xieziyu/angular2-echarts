@@ -3,6 +3,7 @@ export var AngularEchartsDirective = (function () {
     function AngularEchartsDirective(el, renderer) {
         this.el = el;
         this.renderer = renderer;
+        this.chartInit = new EventEmitter();
         this.chartClick = new EventEmitter();
         this.chartDblClick = new EventEmitter();
         this.chartMouseDown = new EventEmitter();
@@ -52,6 +53,7 @@ export var AngularEchartsDirective = (function () {
         if (opt) {
             if (!this.myChart) {
                 this.myChart = this.createChart();
+                this.chartInit.emit(this.myChart);
                 this.registerEvents(this.myChart);
             }
             if (this.hasData()) {
@@ -131,6 +133,7 @@ export var AngularEchartsDirective = (function () {
         'dataset': [{ type: Input },],
         'theme': [{ type: Input },],
         'loading': [{ type: Input },],
+        'chartInit': [{ type: Output },],
         'chartClick': [{ type: Output },],
         'chartDblClick': [{ type: Output },],
         'chartMouseDown': [{ type: Output },],

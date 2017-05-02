@@ -12,6 +12,7 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
   @Input() loading: boolean;
 
   // chart events:
+  @Output() chartInit: EventEmitter<any> = new EventEmitter<any>();
   @Output() chartClick: EventEmitter<any> = new EventEmitter<any>();
   @Output() chartDblClick: EventEmitter<any> = new EventEmitter<any>();
   @Output() chartMouseDown: EventEmitter<any> = new EventEmitter<any>();
@@ -72,6 +73,9 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
     if (opt) {
       if (!this.myChart) {
         this.myChart = this.createChart();
+
+        // output echart instance:
+        this.chartInit.emit(this.myChart);
 
         // register events:
         this.registerEvents(this.myChart);

@@ -27,6 +27,9 @@ export class AppComponent {
   chartOption5: any = demo.BarChartOptions1();
   revert: boolean = false;
 
+  // demo6:
+  chartInstance = null;
+
   chageDataset() {
     this.dataset = (this.dataset == demo.BarChartDataset2) ? demo.BarChartDataset1 :  demo.BarChartDataset2;
   }
@@ -64,5 +67,21 @@ export class AppComponent {
   revertOptions() {
     this.chartOption5 = demo.BarChartOptions1();
     this.revert = false;
+  }
+
+  onChartInit(ec) {
+    this.chartInstance = ec;
+  }
+
+  showLoadingByInstance() {
+    if (this.chartInstance) {
+      this.chartInstance.showLoading();
+    }
+  }
+
+  hideLoadingByInstance() {
+    if (this.chartInstance) {
+      this.chartInstance.hideLoading();
+    }
   }
 }

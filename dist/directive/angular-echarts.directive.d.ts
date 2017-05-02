@@ -6,6 +6,7 @@ export declare class AngularEchartsDirective implements OnChanges, OnDestroy {
     dataset: any[];
     theme: string;
     loading: boolean;
+    chartInit: EventEmitter<any>;
     chartClick: EventEmitter<any>;
     chartDblClick: EventEmitter<any>;
     chartMouseDown: EventEmitter<any>;

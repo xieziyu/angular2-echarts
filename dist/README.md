@@ -1,16 +1,21 @@
 # angular2-echarts [![npm version](https://badge.fury.io/js/angular2-echarts.svg)](http://badge.fury.io/js/angular2-echarts) [![npm downloads](https://img.shields.io/npm/dm/angular2-echarts.svg)](https://npmjs.org/angular2-echarts)
-angular2 directive for echarts v3. Please refer to the [demo](http://xieziyu.github.io) page.
+Angular directive for echarts v3. Please refer to the [demo](http://xieziyu.github.io) page.
 
 ## Table of contents 
 1. [Getting Started](#getting-started)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [API](#api)
-5. [Events](#events)
-6. [Demo](#demo)
+2. [Latest Update](#latest-update)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [API](#api)
+6. [Events](#events)
+7. [Demo](#demo)
 
 # Getting Started
-angular2-echarts is an angular2 structural directive for Baidu's echarts v3.
+angular2-echarts is an angular (ver >= 2.x) structural directive for Baidu's echarts v3.
+
+# Latest Update
+
++ 2017.05.02: Expose `echartsInstance` in `chartInit` event. So we can directly call the API provided by echarts instance. Refer to: [http://echarts.baidu.com/api.html#echartsInstance](http://echarts.baidu.com/api.html#echartsInstance)
 
 # Installation
 ```
@@ -156,6 +161,28 @@ Please refer to the [demo](http://xieziyu.github.io) page.
 + `dataset`: You can ignore the "data" property in "series" of the `options`, and use `dataset` to bind the series data instead.
 
 + `loading`: boolean property. Use it to toggle the echarts loading animation when your data is not ready.
+
+It exposes the `echartsInstance` (since v1.1.6) in `'chartInit'` event. So you can directly call the APIs just like: `resize()`, `showLoading()`, etc. For example:
+
+  + html:
+
+  ```html
+  <div echarts class="demo-chart" [options]="chartOptions" (chartInit)="onChartInit($event)"></div>
+  ```
+
+  + component:
+
+  ```javascript
+  onChartInit(ec) {
+    this.echartsIntance = ec;
+  }
+
+  resizeChart() {
+    if (this.echartsIntance) {
+      this.echartsIntance.resize();
+    }
+  }
+  ```
 
 # Events
 As echarts support the `'click'`, `'dblclick'`, `'mousedown'`, `'mouseup'`, `'mouseover'`, `'mouseout'`, `'globalout'` mouse events, our `angular2-echarts` directive also support the same mouse events but with additional `chart` prefix.
