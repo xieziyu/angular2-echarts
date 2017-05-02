@@ -1,5 +1,5 @@
 # angular2-echarts [![npm version](https://badge.fury.io/js/angular2-echarts.svg)](http://badge.fury.io/js/angular2-echarts) [![npm downloads](https://img.shields.io/npm/dm/angular2-echarts.svg)](https://npmjs.org/angular2-echarts)
-Angular directive for echarts v3. Please refer to the [demo](http://xieziyu.github.io) page.
+Angular directive for echarts v3. Please refer to the [demo](https://xieziyu.github.io/#/angular2-echarts/demo) page.
 
 ## Table of contents 
 1. [Getting Started](#getting-started)
@@ -42,7 +42,7 @@ npm install angular2-echarts --save
 ```
 
 # Usage
-Please refer to the [demo](http://xieziyu.github.io) page.
+Please refer to the [demo](https://xieziyu.github.io/#/angular2-echarts/demo) page.
 
 1. Firstly, import `AngularEchartsModule` in your app module (or any other proper angular module):
     ```typescript
@@ -205,7 +205,7 @@ It supports following event outputs:
 + `chartGlobalOut`: It emits the same `params` of `'globalout'` event
 + `chartDataZoom`: It emits the same `params` of `'dataZoom'` event (thanks to averhaegen)
 
-You can refer to the echarts tutorial: [Events and Actions in ECharts](https://ecomfe.github.io/echarts-doc/public/en/tutorial.html#Events%20and%20Actions%20in%20ECharts) for more details of the event params. You can also refer to the [demo](http://xieziyu.github.io) page for the detailed example.
+You can refer to the echarts tutorial: [Events and Actions in ECharts](https://ecomfe.github.io/echarts-doc/public/en/tutorial.html#Events%20and%20Actions%20in%20ECharts) for more details of the event params. You can also refer to the [demo](https://xieziyu.github.io/#/angular2-echarts/demo) page for the detailed example.
 
 # Demo
 You can clone this repo to your working copy and then launch the demo page in your local machine:
