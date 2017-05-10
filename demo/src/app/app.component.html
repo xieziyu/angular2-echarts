@@ -24,6 +24,9 @@
         <li>
           <a href="#demo6">Demo 6: Expose the "echartsInstance"</a>
         </li>
+        <li>
+          <a href="#demo6">Demo 7: Use "theme" to init echarts</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -45,7 +48,7 @@
           </tab>
           <tab heading='chartOption1'>
             <codeblock language="javascript" theme="okaidia">
-              chartOption1 = {{'{'}}{{'{'}}chartOption1 | json}};
+              chartOption1 = {{chartOption1 | json}};
             </codeblock>
           </tab>
         </tabset>
@@ -71,7 +74,7 @@
           </tab>
           <tab heading='dataset'>
             <codeblock language="javascript" theme="okaidia">
-              dataset = {{'{'}}{{'{'}}dataset | json}};
+              dataset = {{dataset | json}};
             </codeblock>
           </tab>
           <tab heading='chartOption2'>
@@ -138,12 +141,12 @@
           </tab>
           <tab heading='chart3Loading'>
             <codeblock language="javascript" theme="okaidia">
-              chartLoading = {{'{'}}{{'{'}}chartLoading | json}};
+              chartLoading = {{chartLoading | json}};
             </codeblock>
           </tab>
           <tab heading='chartOption3'>
             <codeblock language="javascript" theme="okaidia">
-              chartOption3 = {{'{'}}{{'{'}}chartOption3 | json}};
+              chartOption3 = {{chartOption3 | json}};
             </codeblock>
           </tab>
         </tabset>
@@ -176,7 +179,7 @@
           </tab>
           <tab heading='chartOption4'>
             <codeblock language="javascript" theme="okaidia">
-              chartOption4 = {{'{'}}{{'{'}}chartOption4 | json}};
+              chartOption4 = {{chartOption4 | json}};
             </codeblock>
           </tab>
         </tabset>
@@ -223,7 +226,7 @@
           </tab>
           <tab heading='chartOption5'>
             <codeblock language="javascript" theme="okaidia">
-              chartOption5 = {{'{'}}{{'{'}}chartOption5 | json}};
+              chartOption5 = {{chartOption5 | json}};
             </codeblock>
           </tab>
         </tabset>
@@ -265,6 +268,32 @@ hideLoadingByInstance() {{'{'}}
     this.chartInstance.hideLoading();
   }
 }
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div id="demo7" class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demo 7: Use "theme" to init echarts</h3>
+      </div>
+      <div class="panel-body">
+        <div echarts theme="dark" [options]="chartOption5" [dataset]="dataset" class="demo-chart"></div>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html" theme="okaidia">
+              &lt;div echarts theme="shine" [options]="chartOption5" [dataset]="dataset" class="demo-chart">&lt;/div>
+            </codeblock>
+          </tab>
+          <tab heading='chartOption5'>
+            <codeblock language="javascript" theme="okaidia">
+              chartOption5 = {{chartOption5 | json}};
             </codeblock>
           </tab>
         </tabset>

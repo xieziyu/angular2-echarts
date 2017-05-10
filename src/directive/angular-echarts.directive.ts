@@ -8,7 +8,7 @@ declare var echarts: any;
 export class AngularEchartsDirective implements OnChanges, OnDestroy {
   @Input() options: any;
   @Input() dataset: any[];
-  @Input() theme: string;
+  @Input() theme: string = '';
   @Input() loading: boolean;
 
   // chart events:
@@ -29,9 +29,14 @@ export class AngularEchartsDirective implements OnChanges, OnDestroy {
   }
 
   private createChart() {
-    this.theme = this.theme || 'default';
+    this.theme = this.theme || '';
     this.currentWindowWidth = window.innerWidth;
-    return echarts.init(this.el.nativeElement);
+
+    if (this.theme) {
+      return echarts.init(this.el.nativeElement, this.theme);
+    } else {
+      return echarts.init(this.el.nativeElement);
+    }
   }
 
   private updateChart() {

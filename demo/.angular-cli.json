@@ -23,6 +23,7 @@
       ],
       "scripts": [
         "../node_modules/echarts/dist/echarts.js",
+        "../theme/dark.js",
         "../node_modules/prismjs/prism.js"
       ],
       "environmentSource": "environments/environment.ts",

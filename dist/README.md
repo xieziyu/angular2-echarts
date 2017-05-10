@@ -14,6 +14,7 @@ Angular directive for echarts v3. Please refer to the [demo](https://xieziyu.git
 angular2-echarts is an angular (ver >= 2.x) structural directive for Baidu's echarts v3.
 
 # Latest Update
++ 2017.05.10: Support `theme`.
 
 + 2017.05.02: Expose `echartsInstance` in `chartInit` event. So we can directly call the API provided by echarts instance. Refer to: [http://echarts.baidu.com/api.html#echartsInstance](http://echarts.baidu.com/api.html#echartsInstance)
 
@@ -31,6 +32,7 @@ npm install angular2-echarts --save
 {
   "scripts": [
     "../node_modules/echarts/dist/echarts.js",
+    ...
   ],
 }
 ```
@@ -182,6 +184,12 @@ It exposes the `echartsInstance` (since v1.1.6) in `'chartInit'` event. So you c
       this.echartsIntance.resize();
     }
   }
+  ```
+
++ `theme`: use it to init echarts with theme. You need to include the theme file in `.angular-cli.json` or the `index.html`. For example, if we want to use `dark.js` in [Echarts Themes Page](http://echarts.baidu.com/download-theme.html): 
+  
+  ```html
+  <div echarts theme="dark" class="demo-chart" [options]="chartOptions"></div>
   ```
 
 # Events

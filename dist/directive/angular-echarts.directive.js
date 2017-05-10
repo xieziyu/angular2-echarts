@@ -3,6 +3,7 @@ export var AngularEchartsDirective = (function () {
     function AngularEchartsDirective(el, renderer) {
         this.el = el;
         this.renderer = renderer;
+        this.theme = '';
         this.chartInit = new EventEmitter();
         this.chartClick = new EventEmitter();
         this.chartDblClick = new EventEmitter();
@@ -16,9 +17,14 @@ export var AngularEchartsDirective = (function () {
         this.currentWindowWidth = null;
     }
     AngularEchartsDirective.prototype.createChart = function () {
-        this.theme = this.theme || 'default';
+        this.theme = this.theme || '';
         this.currentWindowWidth = window.innerWidth;
-        return echarts.init(this.el.nativeElement);
+        if (this.theme) {
+            return echarts.init(this.el.nativeElement, this.theme);
+        }
+        else {
+            return echarts.init(this.el.nativeElement);
+        }
     };
     AngularEchartsDirective.prototype.updateChart = function () {
         this.myChart.setOption(this.options);
