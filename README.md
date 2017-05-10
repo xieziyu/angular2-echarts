@@ -32,7 +32,6 @@ npm install angular2-echarts --save
 {
   "scripts": [
     "../node_modules/echarts/dist/echarts.js",
-    ...
   ],
 }
 ```
@@ -164,6 +163,12 @@ Please refer to the [demo](https://xieziyu.github.io/#/angular2-echarts/demo) pa
 
 + `loading`: boolean property. Use it to toggle the echarts loading animation when your data is not ready.
 
++ `theme`: use it to init echarts with theme. You need to include the theme file in `.angular-cli.json` or the `index.html`. For example, if we want to use `dark.js` in [Echarts Themes Page](http://echarts.baidu.com/download-theme.html): 
+  
+  ```html
+  <div echarts theme="dark" class="demo-chart" [options]="chartOptions"></div>
+  ```
+
 It exposes the `echartsInstance` (since v1.1.6) in `'chartInit'` event. So you can directly call the APIs just like: `resize()`, `showLoading()`, etc. For example:
 
   + html:
@@ -184,12 +189,6 @@ It exposes the `echartsInstance` (since v1.1.6) in `'chartInit'` event. So you c
       this.echartsIntance.resize();
     }
   }
-  ```
-
-+ `theme`: use it to init echarts with theme. You need to include the theme file in `.angular-cli.json` or the `index.html`. For example, if we want to use `dark.js` in [Echarts Themes Page](http://echarts.baidu.com/download-theme.html): 
-  
-  ```html
-  <div echarts theme="dark" class="demo-chart" [options]="chartOptions"></div>
   ```
 
 # Events
