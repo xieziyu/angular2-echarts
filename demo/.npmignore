@@ -1,7 +1,0 @@
-e2e
-src
-*.conf.js
-.editorconfig
-.angular-cli.json
-.gitignore
-tslint.json
