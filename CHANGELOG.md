@@ -1,3 +1,9 @@
+<a name="1.2.0"></a>
+## [1.2.0](https://github.com/xieziyu/angular2-echarts/compare/v1.1.7...v1.2.0) (2017-05-18)
+
+### New
++ Publish `UMD` bundle
+
 <a name="1.1.7"></a>
 ## [1.1.7](https://github.com/xieziyu/angular2-echarts/compare/v1.1.6...v1.1.7) (2017-05-10)
 

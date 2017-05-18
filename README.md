@@ -14,6 +14,8 @@ Angular directive for echarts v3. Please refer to the [demo](https://xieziyu.git
 angular2-echarts is an angular (ver >= 2.x) structural directive for Baidu's echarts v3.
 
 # Latest Update
++ 2017.05.18: Publish `UMD` bundle
+
 + 2017.05.10: Support `theme`.
 
 + 2017.05.02: Expose `echartsInstance` in `chartInit` event. So we can directly call the API provided by echarts instance. Refer to: [http://echarts.baidu.com/api.html#echartsInstance](http://echarts.baidu.com/api.html#echartsInstance)
@@ -26,7 +28,7 @@ npm install angular2-echarts --save
 ```
 
 ## How to use it with:
-+ `angular-cli`: If you already have an angular-cli project. You need to import echarts in the **"scripts"** list of .angular-cli.json  just like:
++ `angular-cli`: If you already have an angular-cli project. You need to import echarts in the **"scripts"** list of .angular-cli.json just like:
 
 ```json
 {
@@ -36,7 +38,45 @@ npm install angular2-echarts --save
 }
 ```
 
-+ `index.html`: If you don't use angular-cli. You need to add script tag in **"index.html"** just like:
++ `SystemJS`: For example: angular `quickstart`. You need to modify `system.config.js` file just like:
+
+```javascript
+{
+  map: {
+    // ...
+
+    // angular2-echarts
+    'echarts':                   'npm:echarts',
+    'angular2-echarts':          'npm:angular2-echarts'
+  },
+  packages: {
+    // other packages ...
+
+    // angular2-echarts
+    echarts: {
+      defaultExtension: 'js',
+      main: 'dist/echarts.js',
+      meta: {
+        './*.js': {
+          format: 'global', // load this module as a global
+          exports: 'echarts', // the global property to take as the module value
+        }
+      }
+    },
+    'angular2-echarts': {
+      defaultExtension: 'js',
+      main: 'bundles/angular2-echarts.umd.js',
+      meta: {
+        './*.js': {
+          deps: ['echarts']
+        }
+      }
+    }
+  }
+}
+```
+
++ `index.html`: If you don't use any module resovler, you need to add script tag in **"index.html"** just like:
 
 ```html
 <script type='text/javascript' src='vendor/path/echarts/dist/echarts.js'></script>
@@ -217,8 +257,7 @@ You can refer to the echarts tutorial: [Events and Actions in ECharts](https://e
 # Demo
 You can clone this repo to your working copy and then launch the demo page in your local machine:
 ```
-cd demo
 npm install
-npm start
+npm run demo
 ```
 The demo page server is listening to: http://localhost:4202

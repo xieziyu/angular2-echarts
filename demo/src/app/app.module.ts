@@ -4,7 +4,7 @@ import { FormsModule }          from '@angular/forms';
 import { HttpModule }           from '@angular/http';
 
 import { CodeblockModule }      from 'ng-prism';
-import { TabsModule }           from 'ng2-bootstrap';
+import { TabsModule }           from 'ngx-bootstrap';
 import { AngularEchartsModule } from 'angular2-echarts';
 
 import { AppComponent }         from './app.component';
