@@ -38,7 +38,7 @@ npm install angular2-echarts --save
 }
 ```
 
-+ `SystemJS`: For example: angular `quickstart`. You need to modify `system.config.js` file just like:
++ `SystemJS`: For example: angular `quickstart`. You need to modify `systemjs.config.js` file just like:
 
 ```javascript
 {
