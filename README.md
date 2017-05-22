@@ -30,12 +30,25 @@ npm install angular2-echarts --save
 ## How to use it with:
 + `angular-cli`: If you already have an angular-cli project. You need to import echarts in the **"scripts"** list of .angular-cli.json just like:
 
-```json
+```javascript
 {
   "scripts": [
-    "../node_modules/echarts/dist/echarts.js",
+    // ...
+
+    // add this:
+    "../node_modules/echarts/dist/echarts.js"
   ],
 }
+```
+
++ `Webpack`: You need to edit `webpack.common.js`, just like:
+```javascript
+new webpack.ProvidePlugin({
+  // ...
+
+  // add this:
+  echarts: "echarts"
+})
 ```
 
 + `SystemJS`: For example: angular `quickstart`. You need to modify `systemjs.config.js` file just like:
