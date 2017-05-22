@@ -25,6 +25,7 @@ npm-debug.log
 /demo/dist
 /demo/temp
 /demo/node_modules
+/demo/.vscode
 /logs
 
 #System Files
